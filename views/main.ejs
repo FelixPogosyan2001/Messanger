@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="/style/App.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+    if(localStorage.getItem('token')==null || localStorage.getItem('token')==''){
+      localStorage.setItem('token','<%=token%>');
+      var token=localStorage.getItem('token');
+      fetch('/verify',{
+        method:'POST',
+        headers:{
+          "Accept":"application/json",
+          "Content-type":"application/json"
+        },
+        body:JSON.stringify({
+          token:token
+        })
+      })
+      .then(response=>response.json())
+      .then((data)=>{
+        $('#user').append(`Welcome ${data.name} ${data.lastname}`)
+      })
+    }
+    else{
+      var token=localStorage.getItem('token');
+      fetch('/verify',{
+        method:'POST',
+        headers:{
+          "Accept":"application/json",
+          "Content-type":"application/json"
+        },
+        body:JSON.stringify({
+          token:token
+        })
+      })
+      .then(response=>response.json())
+      .then((data)=>{
+        $('#user').append(`Welcome ${data.name} ${data.lastname}`)
+      })
+    }
+    </script>
+  </head>
+  <body>
+    <% include header.ejs %>
+    <div class='row' style='margin:0px'>
+      <div class='col-sm-12 col-12 contain' style='padding-bottom:10px;padding-top:20px;background:#9966ff;height:50%'>
+        <center><h3 id='user'></h3></center>
+        <h4 class='text-center' style='color:white;  font-family: 'Roboto', sans-serif;'>Chat with the most interesting people</h4>
+        <p style='font-size:13px;margin-top:15px;color:white;font-family: 'Roboto', sans-serif;' class='text-center'>You don't need another chat client</p>
+        <img class='img-responsive justPH' src='./photos/blockofchat.jpg' style='width:450px;height:210px;position:relative;top:10px;left:50px'/>
+        <div class='support'>
+          <p>Hi Jim!</p>
+          <p>Listen,don't you want to go to the movie?</p>
+          <p>Mary<span style='position:relative;left:70px;opacity:0.5'> 7:20 am</span></p>
+        </div>
+            <img src='https://static1.squarespace.com/static/52c1dffee4b0a99fb3cb4259/t/5c33e0e7032be40b1b83716c/1546903787408/Ava+Pence.jpg' id='girlSender'/>
+        <div class='answer'>
+          <p>Hi Mary!</p>
+          <p>Yes,of course,let's go in 30 minutes</p>
+          <p>Jim<span style='position:relative;left:70px;opacity:0.5'> 8:10 am</span></p>
+        </div>
+        <img src='https://i.pinimg.com/originals/44/9e/f5/449ef5be2ec36d7dd3b6f03fb3734780.jpg'  id='manS' style='width:50px;height:50px;border-radius:30px;position:absolute;right:35px;top:285px;'/>
+      </div>
+    </div>
+    <h4 class='text-center' style='margin-top:10px;margin-bottom:30px'>So how does EveChat work?</h4>
+    <div style='margin:0px;' class='row justify-content-center'>
+    <div class='col-10 col-sm-3'>
+      <img src='./photos/firststep.jpg' style='width:100%;height:250px'/>
+      <p style='font-family:Roboto'>1.Fist,you need to upload a photo in order to be recognized by face</p>
+    </div>
+    <div class='col-10 col-sm-3'>
+      <img src='./photos/nextstep.png' style='width:100%;height:250px'/>
+      <p style='font-family:Roboto'>2.Next,you will need to find a chat client</p>
+    </div>
+    <div class='col-10 col-sm-3'>
+    <img src='./photos/stepthree.jpg' style='width:100%;height:250px'/>
+     <p style='font-family:Roboto'>3.And now you can  chat with visitors on web-site</p>
+    </div>
+  </div>
+      <div class='row' style='margin-right:0px'>
+        <div class='col-12'>
+        <h4 style='margin-left:160px;margin-top:30px' class='text-warning'>Reviews <i style='color:yellow' class="fas fa-star"></i><i style='color:yellow' class="fas fa-star"></i></h4>
+      </div>
+      </div>
+  <div class='row justify-content-center' style='margin:0px'>
+      <div class='col-12 col-sm-3 reviews'>
+        <p class='text-center' style='color:white;margin-top:25px;font-family:Roboto;border-bottom:1px solid #33ff33;'>The chat is just great, everyone who wants to communicate with someone, then go to EveChat!</p>
+        <img src='https://s.mediasole.ru/cache/content/data/images/1032/1032969/original.jpeg' style='width:50px;height:50px;border-radius:30px;position:relative;bottom:10px;'/><span id='comment'>Emily Johnson</span>
+        <span id='comTime'>14:30</span>
+      </div>
+      <div class='col-12 col-sm-3 reviews'>
+        <p class='text-center' style='color:white;margin-top:25px;font-family:Roboto;border-bottom:1px solid #33ff33;'>After communicating with users of this chat, I realized that this is the best place to chat.</p>
+        <img src='https://peopletalk.ru/wp-content/uploads/2018/01/ap5a5p-640x473.jpg' style='width:50px;height:50px;border-radius:30px;position:relative;bottom:10px;'/><span id='comment'>Jack Evans</span>
+        <span id='comTime'>8:10</span>
+      </div>
+      <div class='col-12 col-sm-3 reviews'>
+        <p class='text-center' style='color:white;margin-top:25px;font-family:Roboto;border-bottom:1px solid #33ff33;'>All users are very positive and many share their life experiences. Cool chat! Good luck and success </p>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqPWFhQynHOzMAcLcErdEUYJLLYXsWdwbVZorvm6Iy7FlnNhdX' style='width:50px;height:50px;border-radius:30px;position:relative;bottom:10px;'/><span id='comment'>Olivia Wilson</span>
+        <span id='comTime'>10:45</span>
+      </div>
+  </div>
+  <% include footer.ejs %>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
+</html>

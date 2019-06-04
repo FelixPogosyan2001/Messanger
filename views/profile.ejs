@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style/App.css">
+    <script src='/checkToken'></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title></title>
+  </head>
+  <body style='background:#f2f2f2'>
+    <% include header.ejs %>
+    <div style='margin:0px;margin-bottom:80px' class='row justify-content-center'>
+    <div class='col-sm-4 profile'>
+      <h4 id='exit' onclick='exit()'>Exit</h4>
+      <center><img id='avatar'/></center>
+      <h5>Name</h5>
+      <input id='inp_name' oninput="inp_name(event)" class='profText'/>
+      <h5>Lastname</h5>
+      <input id='inp_lastname' oninput="inp_lastname(event)" class='profText'/>
+      <h5>Email</h5>
+      <input id='inp_email' oninput="inp_email(event)" class='profText'/>
+      <h5 style='margin-bottom:15px'>Avatar</h5>
+      <div class="input-group">
+            <div class="custom-file">
+              <input oninput="avatar(event)" id='inp_avatar' type="file" class="custom-file-input"/>
+              <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
+            </div>
+          </div>
+        <center><button onclick='change()' id='btnChange'>Change</button></center>
+        </div>
+        </div>
+        <% include footer.ejs %>
+  </body>
+  <script>
+  var exit=()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('urlOfChat');
+    window.location='/'
+  }
+    var token=localStorage.getItem('token');
+    var name,id,lastname,email,avatar='';
+    fetch('/verify',{
+      method:'post',
+      headers:{
+        'Accept':'application/json',
+        "Content-type":'application/json'
+      },
+      body:JSON.stringify({
+        token:token
+      })
+    })
+    .then((res)=>{
+      return res.json()
+    })
+    .then((data)=>{
+      name=data.name;
+      lastname=data.lastname;
+      id=data._id;
+      email=data.login;
+      $('#inp_email').val(email)
+      $('#inp_name').val(name)
+      $('#inp_lastname').val(lastname)
+      $("#avatar").attr('src',data.picture)
+    })
+    function avatar(event){
+      avatar=event.target.files[0]
+    }
+    function inp_name(event){
+      name=event.target.value
+    }
+    function inp_lastname(event){
+      lastname=event.target.value
+    }
+    function inp_email(event){
+      email=event.target.value
+    }
+    var change=()=>{
+      console.log(name)
+    var data=new FormData();
+    data.append('avatar',avatar)
+    data.append('id',id)
+    data.append('name',name)
+    data.append('lastname',lastname)
+    data.append('login',email)
+    fetch('/change',{
+      method:'POST',
+      body:data
+    })
+    .then(response=>response.json())
+    .then((data)=>{
+      $('#inp_email').val(data.login)
+      $('#inp_name').val(data.name)
+      $('#inp_lastname').val(data.lastname)
+      $("#avatar").attr('src',data.picture)
+    })
+  }
+    </script>
+</html>

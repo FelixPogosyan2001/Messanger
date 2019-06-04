@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style/App.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+    console.log(localStorage.getItem('token'))
+      if(localStorage.getItem('token')!==null){
+        window.location='/main'
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body id='specialBody'>
+    <div class="row" style="margin:0px">
+      <div style="padding:0px;overflow:hidden" class="col-12 col-sm-6">
+        <img src='/photos/peopleChat.PNG' style="width:100%;height:90%"/>
+        </div>
+      <div class='col-12 col-sm-6' id='block_1'>
+        <h5 style="color:#A7A1EB;font-family: 'Roboto', sans-serif;position:relative;right:-12px">Login to EveChat</h5>
+        <div class='col-12 col-sm-6' id='qers'>
+          <center><p id="war" class="text-center alert alert-danger"><%=message%></p></center>
+          <form onsubmit="return check()" method='post' action='/main'>
+            <input id='inp1' oninput="data(event)" name="login" placeholder="Login" class='form-control inpofreg'/>
+            <input id='inp2'  oninput="data(event)" name="password" type='password' placeholder='Password' class='form-control inpofreg'/>
+            <center><button type='submit' id='btnLog'>Login</button></center>
+            <p style="margin-top:15px;font-size:15px" class='text-center'>Don't have an accout? <a href='/signUp'>SignUp</a></p>
+          </form>
+          </div>
+        </div>
+  </body>
+  <script>
+  $( document ).ready(function() {
+      if('<%=message%>'==''){
+        $("#war").css('display','none')
+      }
+      else {
+          $("#war").css('display','inline')
+      }
+});
+  function data(event){
+    if(event.target.value!='' || event.target.value!=null){
+      $('#warning').remove();
+      $("#war").css('display','none')
+    }
+  }
+    function check(){
+      if ($('warning')) {
+          $('#warning').remove()
+      }
+      if ($('#inp1').val()=='' ||$('#inp1').val()==' ' || $('#inp1').val()==''||$('#inp2').val()==null ||$('#inp2').val()==' ' || $('#inp2').val()==''){
+        $("#qers").prepend('<center><p id="warning" class="text-center alert alert-danger">Enter detailes</p></center>');
+        return false
+      }
+    }
+  </script>
+</html>

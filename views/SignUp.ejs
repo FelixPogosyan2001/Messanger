@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./style/App.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body id='specialBody'>
+    <div class="row" style="margin:0px">
+      <div style="padding:0px;overflow:hidden" class="col-12 col-sm-6">
+        <img src='/photos/peopleChat.PNG' style="width:100%;height:90%"/>
+        </div>
+      <div class='col-12 col-sm-6'>
+        <div class='col-sm-6' id='SignUP'>
+          <h5 style="color:#A7A1EB;font-family: 'Roboto', sans-serif">Sign up to EveChat</h5>
+          <h4 id='error' class='<%=nameOfClass%>' ><%=alert%></h4>
+          <form action='/addUser' onsubmit="sendForm(event)" method='post'>
+            <input name="name" placeholder='Name' class='form-control inpofreg'/>
+            <input name="lastname" placeholder='Lastname' class='form-control inpofreg'/>
+            <input name='gender' list='gender' placeholder='Gender' class='form-control inpofreg'/>
+            <datalist id='gender'>
+              <option value="Male"></option>
+              <option value="Female"></option>
+            </datalist>
+            <input name="email" placeholder='Email' class='form-control inpofreg'/>
+            <input name="password" type='password' placeholder='Password' class='form-control inpofreg'/>
+            <center><button type="submit" id='btnLog'>SignUp</button></center>
+              <p style="margin-top:15px;font-size:15px" class='text-center'>Already have an accout? <a href='/'>Login</a></p>
+          </form>
+          </div>
+        </div>
+  </body>
+  <script>
+  var form = document.forms[0];
+
+  var sendForm = (event) => {
+    error_checking(form.name)
+    if (!form.name.value){
+      form.name.classList.add('error_style')
+      event.preventDefault();
+    }
+    error_checking(form.lastname)
+    if (!form.lastname.value){
+      form.lastname.classList.add('error_style')
+      event.preventDefault();
+    }
+    error_checking(form.gender)
+    if (!form.gender.value){
+      form.gender.classList.add('error_style')
+      event.preventDefault();
+    }
+    error_checking(form.email)
+    if (!form.email.value){
+      form.email.classList.add('error_style')
+      event.preventDefault();
+    }
+    error_checking(form.password)
+    if (!form.password.value){
+      form.password.classList.add('error_style');
+      event.preventDefault();
+    }
+  }
+
+  function error_checking(data) {
+    if (data.className == 'form-control inpofreg error_style'){
+      data.className = 'form-control inpofreg';
+    }
+  }
+  </script>
+  <style>
+    .error_style {
+      border:2px solid #ff4d4d
+    }
+  </style>
+</html>

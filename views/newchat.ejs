@@ -1,0 +1,135 @@
+<div  class='row justify-content-center' style='margin-right:0px'>
+  <div class='col-sm-12 ' style='overflow:auto;background:#f2f2f2;height:580px'>
+    <center><div class='row'>
+      <div class='col-12 col-sm-12' id='outmessage'></div>
+    </div></center>
+  </div>
+</div>
+<div class='row justify-content-center' style='margin:0px'>
+<div class='col-sm-12'>
+<div class="input-group">
+  <input placeholder='Write a message...' type='text' class='form-control' id='message'/>
+  <div class="input-group-append shallow">
+    <button onClick="send()" id='forSend'>Send</button>
+  </div>
+</div>
+</div>
+</div>
+<script>
+var person_num_1=null;
+var person_num_2=null;
+var person,private_person;
+//let str=window.location.href.substring(30);
+if(localStorage.getItem('urlOfChat')){
+let str=localStorage.getItem('urlOfChat')
+var array=str.split('&');
+console.log(array[0]+'/'+array[1])
+if(person_num_2==null || person_num_1==null){
+  fetch('/search',{
+    method:'post',
+    headers:{
+      'Accept':'application/json',
+      "Content-type":'application/json'
+    },
+    body:JSON.stringify({
+      id:array[0]
+    })
+  })
+  .then((response)=>{
+    console.log(response)
+    return response.json()
+  })
+  .then((data)=>{
+    person_num_1=data;
+  })
+  fetch('/search',{
+    method:'post',
+    headers:{
+      'Accept':'application/json',
+      "Content-type":'application/json'
+    },
+    body:JSON.stringify({
+      id:array[1]
+    })
+  })
+  .then((response)=>{
+    console.log(response)
+    return response.json()
+  })
+  .then((data)=>{
+    person_num_2=data
+  })
+  var token=localStorage.getItem('token');
+  fetch('/verify',{
+    method:'POST',
+    headers:{
+      "Accept":"application/json",
+      "Content-type":"application/json"
+    },
+    body:JSON.stringify({
+      token:token
+    })
+  })
+  .then(response=>response.json())
+  .then((data)=>{
+    person=`${data.name} ${data.lastname}`
+    private_person=`<img src='${data.picture}' style='width:50px;height:50px;border-radius:30px'/> ${data.name}`
+  })
+  fetch('/messages',{
+    method:'POST',
+    headers:{
+      "Accept":"application/json",
+      "Content-type":"application/json"
+    },
+    body:JSON.stringify({
+      contact:array[0]+'/'+array[1],
+      token:token
+    })
+  })
+  .then((response)=>{
+    console.log(response)
+    return response.json()
+  })
+  .then((data)=>{
+      data.forEach((item,index)=>{
+        var aboutPer=item.split(' ');
+        var mes='';
+        var message=aboutPer.filter((item,index)=>{
+          return index>1
+        })
+        var nickname=aboutPer[0] + ' ' + aboutPer[1];
+        for(var i=0;i<message.length;i++){
+          mes+=message[i]+' '
+        }
+        if(nickname==person){
+          $('#outmessage').append(`<span id='textClient1' style='position:relative;right:250px;top:15px;margin-right:5px'>${private_person}</span><div id='client1'>${mes}</div>`);
+    }
+        else {
+          if(`${person_num_1.name} ${person_num_1.lastname}`!=person){
+            $('#outmessage').append(`<div id='client2'><div style='background:white;width:130px;word-wrap: break-word;border-radius:10px;position:relative;right:60px;padding:6px'>${mes}</div><img src='${person_num_1.picture}' style='width:50px;height:50px;border-radius:30px;margin-right:5px;position:relative;bottom:35px;left:60px'/><span style='position: relative;left:58px;bottom: 31px;'>${person_num_1.name}</span></div>`);
+          }
+          else if(`${person_num_2.name} ${person_num_2.lastname}`!=person){
+              $('#outmessage').append(`<div id='client2'><div style='background:white;width:130px;word-wrap: break-word;border-radius:10px;position:relative;right:60px;padding:6px'>${mes}</div><img src='${person_num_2.picture}' style='width:50px;height:50px;border-radius:30px;margin-right:5px;position:relative;bottom:35px;left:60px'/><span style='position: relative;left:58px;bottom: 31px;'>${person_num_2.name}</span></div>`);
+        }
+        }
+      })
+  })
+  .catch((error)=>{
+    console.log('Not found')
+  })
+}
+  var socket = io.connect();
+  send=()=>{
+    socket.emit('message',{message:$('#message').val(),sender:person,person1:person_num_1,person2:person_num_2})
+    $("#message").val('')
+  }
+  socket.on('addmess',(data)=>{
+    if(data.sender==person){
+      $('#outmessage').append(`<span style='position:relative;right:250px;top:15px;margin-right:5px'>${private_person}</span><div style='position:relative;bottom:18px;right:130px;max-width:130px;word-wrap: break-word; padding:5px;background:#bb99ff;color:white;border-radius:10px'>${data.message}</div>`);
+    }
+    else{
+      $('#outmessage').append(`<div style='margin:5px;position:relative;left:180px;width:250px;height:auto'><div style='background:white;width:130px;word-wrap: break-word;border-radius:10px;position:relative;right:60px;padding:6px'>${data.message}</div><img src='${data.picture1}' style='width:50px;height:50px;border-radius:30px;margin-right:5px;position:relative;bottom:35px;left:60px'/><span style='position: relative;left:58px;bottom: 31px;'>${data.sender.split(' ')[0]}</span></div>`);
+}
+  })
+}
+  </script>
