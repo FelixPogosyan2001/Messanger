@@ -1,0 +1,385 @@
+.inpofreg{
+  margin-bottom:35px;
+  margin-top:35px;
+  border:2px solid red
+}
+@media (max-width:700px) {
+  #specialBody{
+    overflow:auto !important
+  }
+  #SignUP{
+    top:0px !important;
+    left:0px !important
+  }
+  .contain{
+    height: 770px !important
+  }
+  #manS{
+    right: 10px !important;
+    top: 720px !important;
+  }
+  #forSend{
+    position: relative !important;
+    left: 165px !important
+  }
+  .justPH{
+    width: 400px !important;
+    height: 210px !important;
+    position: relative !important;
+    top: 10px !important;
+    left: -8px !important;
+  }
+  .support{
+    float: right !important;
+    margin-right: 80px !important;
+    position: relative !important;
+    right: 90px !important;
+    bottom: -30px !important;
+    width: 200px !important;
+    height: 150px !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    padding-left: 10px !important;
+    padding-top: 10px !important;
+    background: white;
+    color: black;
+  }
+  #girlSender{
+    float: right !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 30px !important;
+    position: relative !important;
+    bottom: -185px !important;
+    right: 55px !important;
+  }
+  .answer{
+    float: right !important;
+    width: 200px !important;
+    height: 150px !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    background: #bb99ff;
+    color: white;
+    border: none;
+    position: relative;
+    left:0px !important;
+    top: 40px !important;
+  }
+  .shallow{
+    margin-left: -1px  !important;
+    align-items: center  !important;
+    position: relative  !important;
+    left: 145px  !important;
+    width: 50px  !important;
+  }
+  #client2{
+    margin: 5px !important;
+    margin-top: 25px !important;
+    position: relative !important;
+    left: 45px !important;
+    position: relative !important;
+/* width: 250px; */
+  }
+  #textClient1{
+    position: relative !important;
+    right: 130px !important;
+    top: 15px !important;
+    margin-right: 5px !important;
+  }
+  #client1{
+    position: relative !important;
+bottom: 8px !important;
+right: 20px !important;
+max-width: 130px !important;
+word-wrap: break-word !important;
+padding: 5px !important;
+background: #bb99ff !important;
+color: white !important;
+border-radius: 10px !important
+  }
+  .cards{
+    margin-left:80px !important
+  }
+  #block_1{
+    margin-top:0px !important;
+    left:0px !important;
+  }
+}
+#exit{
+  transition: all 2s;
+  cursor:pointer
+}
+#exit:hover{
+  color:red
+}
+#btnLog{
+  background:#6456FC;
+  width:100%;
+  height:40px;
+  border-radius:20px;
+  border:none;
+  color:white
+}
+#client2{
+  margin:5px;
+  position:relative;
+  left:180px;
+  width:250px;
+}
+#client1{
+  position:relative;
+  bottom:18px;
+  right:130px;
+  max-width:130px;
+  word-wrap: break-word;
+  padding:5px;
+  background:#bb99ff;
+  color:white;
+  border-radius:10px
+}
+#avatar{
+  height:120px;
+  width:120px;
+  border-radius:60px
+}
+.answer{
+  float:right;
+  width:200px;
+  height:150px;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  border-bottom-left-radius:10px;
+  padding-left:10px;
+  padding-top:10px;
+  background: #bb99ff;
+  color:white;
+  border:none;
+  position:relative;
+  left:250px;
+  top:40px
+}
+#sender{
+  float:right;
+  width:50px;
+  height:50px;
+  border-radius:30px;
+  position:relative;
+  bottom:10px;
+  right:5px
+}
+.support{
+  float:right;
+  margin-right:80px;
+  position:relative;
+  bottom:130px;
+  width:200px;
+  height:150px;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  border-bottom-right-radius:10px;
+  padding-left:10px;
+  padding-top:10px;
+  background:white;
+  color:black;
+}
+#btnChange{
+  background:#6456FC;
+  width:20%;
+  height:30px;
+  border:none;
+  color:white;
+  margin-top:10px;
+  border-radius:10px
+}
+#SignUP{position:relative;top:100px;left:100px}
+#war{
+  width:150px;position:relative;top:10px;display:none
+}
+#warning{
+  width:150px;
+  position:relative;
+  top:10px
+}
+#obsh{
+  color:white;
+  font-size:15px;
+  margin-top:20px;
+  cursor:pointer
+}
+#obsh:hover{
+  background-color:#596573
+}
+#obsh a{
+  color:white;
+  text-decoration:none;
+}
+#forSend{
+  background:#6456FC;
+  border:none;
+  color:white
+}
+#block_1{
+  margin-top:150px;
+  position:relative;
+  left:50px
+}
+.listNav{
+  margin-left:55px;
+  position:relative;
+  left:30px
+}
+#compChat{
+  width:550px;
+  height:500px
+}
+#someChat{
+  width:450px;
+  height:300px;
+  position:relative;
+  bottom:100px
+}
+#specialBody{
+  overflow:hidden;
+}
+#message{
+  width:360px;
+}
+#outmessage1{
+  padding-top:15px
+}
+#outmessage2{
+  padding-top:15px
+}
+.messFromUser2{
+  position:relative;
+  margin-top:15px;
+  bottom:5px;
+  max-width:130px;
+  word-wrap: break-word;
+  padding:5px;
+  background:#ffff;
+  color:black;
+  border-radius:10px;
+  right:55px
+}
+.messFromUser1{
+  position:relative;
+  bottom:15px;
+  left:20px;
+  max-width:130px;
+  word-wrap: break-word;
+  padding:5px;
+  background:#bb99ff;
+  color:white;
+  border-radius:10px
+}
+.profile{
+  background:white;
+  position:relative;
+  top:30px;
+  height:570px;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:20px;
+  border-radius:10px
+}
+.profText{
+  background:#f2f2f2;
+  width:100%;
+  height:30px;
+  font-family: 'Roboto', sans-serif;
+  padding-left:8px;
+  padding-top:3px;
+  border:none;
+  margin-top:5px
+}
+.profile h5{
+  margin-top:18px
+}
+.reviews{
+  background:#0086b3;
+  width:100px;
+  height:160px;
+  margin:10px
+}
+#comTime{
+  opacity:0.5;
+  color:white;
+  font-weight:600;
+  float:right;
+  position:relative;
+  top:10px
+}
+#comment{
+  color:white;
+  position:relative;
+  bottom:10px;
+  left:5px;
+  font-family: 'Roboto', sans-serif;
+}
+.cards{
+  margin:25px
+}
+.preloader{
+  z-index:3;
+  background: #19004d;
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0px;
+  left:0px;
+  transition-duration:3s;
+  transition-property:all;
+}
+.loader{
+  z-index:4;
+  border-radius:40px;
+  width:80px;
+  height:80px;
+  position:fixed;
+  top:45%;
+  left:45%;
+  border:10px solid white;
+  border-top-color:blue;
+  animation-name:spin;
+  animation-duration:3s;
+  animation-iteration-count:infinite;
+  animation-timing-function:linear
+}
+#error{
+  padding-left:35px;
+  position:relative;
+  top:10px
+}
+.row{
+  margin-left:0px !important;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.listNav a{
+  color:white;
+  font-family: 'Roboto', sans-serif;
+  text-decoration:none;
+}
+#user{
+  color:white;
+  font-family: 'Roboto', sans-serif;
+}
+#girlSender{
+  float:right;width:50px;height:50px;border-radius:30px;position:relative;bottom:10px;right:5px
+}
+/*Keyframes*/
+@Keyframes spin{
+  from{
+    transform:rotate(0deg)
+  }
+  to{
+    transform:rotate(360deg)
+  }
+}
